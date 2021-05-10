@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class Book {
+public class BookDomain {
 
     /**
      * 主键 ID

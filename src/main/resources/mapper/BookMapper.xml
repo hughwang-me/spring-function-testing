@@ -14,9 +14,18 @@
     <!--@mbg.generated-->
     id, `name`, author, price, publish_date
   </sql>
+
+
+  <select id="list"  resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from book
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
-    select 
+    select
     <include refid="Base_Column_List" />
     from book
     where id = #{id,jdbcType=INTEGER}
@@ -28,9 +37,9 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.uwjx.springfunction.domain.entity.Book" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into book (`name`, author, price, 
+    insert into book (`name`, author, price,
       publish_date)
-    values (#{name,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, 
+    values (#{name,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE},
       #{publishDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.uwjx.springfunction.domain.entity.Book" useGeneratedKeys="true">
