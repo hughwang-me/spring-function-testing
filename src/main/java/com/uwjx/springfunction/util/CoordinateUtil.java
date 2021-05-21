@@ -13,7 +13,6 @@ public class CoordinateUtil {
         }
         int iSum, iCount, iIndex;
         double dLon1 = 0, dLon2 = 0, dLat1 = 0, dLat2 = 0, dLon;
-
         iSum = 0;
         iCount = rangePoints.length;
         for (iIndex = 0; iIndex < iCount; iIndex++) {
@@ -37,9 +36,6 @@ public class CoordinateUtil {
                 }
             }
         }
-        if ((iSum % 2) != 0) {
-            return true;
-        }
-        return false;
+        return (iSum % 2) != 0;
     }
 }
