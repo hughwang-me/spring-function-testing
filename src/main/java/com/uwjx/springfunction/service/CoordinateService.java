@@ -36,8 +36,8 @@ public class CoordinateService {
 
 
 
-        CoordinatePoint n1 = new CoordinatePoint(120.099906,30.239145);
-        CoordinatePoint n2 = new CoordinatePoint(120.152778,30.248859);
+        CoordinatePoint n1 = new CoordinatePoint(120.152606,30.233436);//在
+        CoordinatePoint n2 = new CoordinatePoint(120.11939,30.223202);//不在
         CoordinatePoint n3 = new CoordinatePoint(120.151576,30.235438);//在
         CoordinatePoint y1 = new CoordinatePoint(120.166254,30.226168);//不在
         CoordinatePoint y2 = new CoordinatePoint(120.13441,30.248636);//在

@@ -4,33 +4,34 @@ import com.uwjx.springfunction.domain.CoordinatePoint;
 
 public class CoordinateUtil {
 
-    public static boolean isPtInPoly (double ALon , double ALat , CoordinatePoint[] ps) {
-        int iSum, iCount, iIndex;
-        double dLon1 = 0, dLon2 = 0, dLat1 = 0, dLat2 = 0, dLon;
-        if (ps.length < 3) {
+    private final static int RANGE_LIMIT = 3;
+
+    public static boolean isPtInPoly(double longitude, double latitude, CoordinatePoint[] rangePoints) {
+        if (rangePoints == null || rangePoints.length < RANGE_LIMIT) {
+            //样本不足
             return false;
         }
+        int iSum, iCount, iIndex;
+        double dLon1 = 0, dLon2 = 0, dLat1 = 0, dLat2 = 0, dLon;
+
         iSum = 0;
-        iCount = ps.length;
-        for (iIndex = 0; iIndex<iCount;iIndex++) {
+        iCount = rangePoints.length;
+        for (iIndex = 0; iIndex < iCount; iIndex++) {
             if (iIndex == iCount - 1) {
-                dLon1 = ps[iIndex].getX();
-                dLat1 = ps[iIndex].getY();
-                dLon2 = ps[0].getX();
-                dLat2 = ps[0].getY();
+                dLon1 = rangePoints[iIndex].getX();
+                dLat1 = rangePoints[iIndex].getY();
+                dLon2 = rangePoints[0].getX();
+                dLat2 = rangePoints[0].getY();
             } else {
-                dLon1 = ps[iIndex].getX();
-                dLat1 = ps[iIndex].getY();
-                dLon2 = ps[iIndex + 1].getX();
-                dLat2 = ps[iIndex + 1].getY();
+                dLon1 = rangePoints[iIndex].getX();
+                dLat1 = rangePoints[iIndex].getY();
+                dLon2 = rangePoints[iIndex + 1].getX();
+                dLat2 = rangePoints[iIndex + 1].getY();
             }
-            // 以下语句判断A点是否在边的两端点的水平平行线之间，在则可能有交点，开始判断交点是否在左射线上
-            if (((ALat >= dLat1) && (ALat < dLat2)) || ((ALat >= dLat2) && (ALat < dLat1))) {
+            if (((latitude >= dLat1) && (latitude < dLat2)) || ((latitude >= dLat2) && (latitude < dLat1))) {
                 if (Math.abs(dLat1 - dLat2) > 0) {
-                    //得到 A点向左射线与边的交点的x坐标：
-                    dLon = dLon1 - ((dLon1 - dLon2) * (dLat1 - ALat) ) / (dLat1 - dLat2);
-                    // 如果交点在A点左侧（说明是做射线与 边的交点），则射线与边的全部交点数加一：
-                    if (dLon < ALon) {
+                    dLon = dLon1 - ((dLon1 - dLon2) * (dLat1 - latitude)) / (dLat1 - dLat2);
+                    if (dLon < longitude) {
                         iSum++;
                     }
                 }
